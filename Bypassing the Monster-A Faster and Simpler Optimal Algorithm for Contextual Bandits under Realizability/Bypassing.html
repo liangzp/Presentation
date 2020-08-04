@@ -13266,9 +13266,8 @@ a.anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><font face="New Times Roman" size=6> Importances</font>
 <font face="New Times Roman" size=5></p>
-<p><li> Applications: user recommendation systems (Agarwal et al., 2016) and mobile health applications (Tewari and Murphy, 2017) </li></p>
-<p><li> In theory: simplest reinforcement learning problem that embeds the full complexity of statistical learning with function approximation </li>&lt;/font&gt;</p>
-
+<li> Applications: user recommendation systems (Agarwal et al., 2016) and mobile health applications (Tewari and Murphy, 2017) </li>
+<li> In theory: simplest reinforcement learning problem that embeds the full complexity of statistical learning with function approximation </li>
 </div>
 </div>
 </div></section></section><section><section>
@@ -13282,8 +13281,7 @@ Regret:
 $$
 \sum_{t=1}^{T}\left(r_{t}\left(\pi_{*}\left(x_{t}\right)\right)-r_{t}\left(a_{t}\right)\right)
 $$
-Remark: it imposes no assumption on nature. 
-</font></p>
+Remark: it imposes no assumption on nature.</p>
 
 </div>
 </div>
@@ -13302,8 +13300,7 @@ $$</p>
 <p>Regret:
 $$
 \sum_{t=1}^{T}\left(r_{t}\left(\pi_{f^{*}}\left(x_{t}\right)\right)-r_{t}\left(a_{t}\right)\right)
-$$
-&lt;/font&gt;</p>
+$$</p>
 
 </div>
 </div>
@@ -13319,52 +13316,51 @@ Starting point:</p>
 </font>
 
 <center>
- <font face="Times New Roman" size=3><p>Is there an offline-regression-oracle-based algorithm that achieves the optimal regret for general contextual bandits?</p></font>
+ <font face="Times New Roman" size=3><b>Is there an offline-regression-oracle-based algorithm that achieves the optimal regret for general contextual bandits?</b></font>
 </center><p><font face="Times New Roman" size=3>
-Optimal regret
+Optimal regret:
 an algorithm that achieves $\widetilde{O}(\sqrt{K T \log |\mathcal{F}|})$ regret with the total number of oracle calls being polynomial/sublinear in T
 </font></p>
-<p><font face="Times New Roman" size=3>
+<p><font face="Times New Roman" size=2.5>
 $$
 \begin{array}{|l||l|l|}
-\hline \text { Algorithm } & \text { Statistical optimality } & \text { Computational complexity } \\
+\hline \text { Algorithm } &amp; \text { Statistical optimality } &amp; \text { Computational complexity } \\
 \hline \begin{array}{l}
 \text { Regressor Elimination } \\
 \text { (Agarwal et al. }2012)
-\end{array} & \text { optimal } & \begin{array}{l}
+\end{array} &amp; \text { optimal } &amp; \begin{array}{l}
 \Omega(|\mathcal{F}|) \\
 \text { intractable }
 \end{array} \\
 \hline \begin{array}{l}
 \text { ILOVETOCONBANDITS } \\
 \text { (Agarwal et al. }2014)
-\end{array} & \text { optimal } & \begin{array}{l}
+\end{array} &amp; \text { optimal } &amp; \begin{array}{l}
 \widetilde{O}(\sqrt{K T / \log |\mathcal{F}|}\text { calls to an } \\
 \text { offline classification oracle }
 \end{array} \\
 \hline \begin{array}{l}
 \text { RegCB } \\
 \text { (Foster et al. }2018)
-\end{array} & \text { suboptimal } & \begin{array}{l}
+\end{array} &amp; \text { suboptimal } &amp; \begin{array}{l}
 O\left(T^{3 / 2}\right) \text { calls to an } \\
 \text { offline regression oracle }
 \end{array} \\
 \hline \begin{array}{l}
 \text { SquareCB } \\
 \text { (Foster and Rakhlin }2020)
-\end{array} & \text { optimal } & \begin{array}{l}
+\end{array} &amp; \text { optimal } &amp; \begin{array}{l}
 O(T) \text { calls to an } \\
 \text { online regression oracle }
 \end{array} \\
-\hline \text { FALCON } & \text { optimal } & \begin{array}{l}
+\hline \text { FALCON } &amp; \text { optimal } &amp; \begin{array}{l}
 O(\log T) \text { or } O(\log \log T) \text { calls to an } \\
 \text { offline regression oracle }
 \end{array} \\
-\text { (this paper) } & & \\
+\text { (this paper) } &amp; &amp; \\
 \hline
 \end{array}
-$$
-</font></p>
+$$</p>
 
 </div>
 </div>
@@ -13372,13 +13368,11 @@ $$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><font face="Times New Roman" size=4>
+<p><font face="Times New Roman" size=3>
 Key Challenges and Contributions:</p>
-<p><li>Computational hurdle.</li>
+<li>Computational hurdle.</li>
   <li>Statistical hurdle associated with constructing confidence bounds..</li>
   <li>Statistical hurdle associated with analyzing dependent actions.</li>
-&lt;/font&gt;</p>
-
 </div>
 </div>
 </div></div></section></section><section><section>
@@ -13390,16 +13384,15 @@ Key Challenges and Contributions:</p>
 </center>
 <font face="Times New Roman" size=4>
 Components:</p>
-<p><li>
+<li>
 an epoch schedule
-</li></p>
-<p><li>
+</li>
+<li>
 the greedy use of an offline least-squares regression oracle
-</li></p>
-<p><li>
+</li>
+<li>
 a probabilistic selection strategy that maps reward predictions to action probabilities, controlled by an epoch-varying learning rate
-</li>&lt;/font&gt;</p>
-
+</li>
 </div>
 </div>
 </div></section></section><section><section>
@@ -13414,13 +13407,12 @@ Computational Efficiency: $\tau_m=2^m,\forall m\in \mathbb{N}$
 <p><font face="Times New Roman" size=4>
 Optimal Regret:
 <br>
-THEOREM 1. Consider an epoch schedule such that $\gamma_{m} \leq 2 \gamma_{m-1}$ for $m>1$ and $\gamma_{1}=O(1)$. For
+THEOREM 1. Consider an epoch schedule such that $\gamma_{m} \leq 2 \gamma_{m-1}$ for $m&gt;1$ and $\gamma_{1}=O(1)$. For
 $\operatorname{any} T \in \mathbb{N},$ with probability at least $1-\delta,$ the regret of the FALCON algorithm after $T$ rounds is at
 most
-\[
+$$
 O(\sqrt{K T \log (|\mathcal{F}| T / \delta)})
-\]
-</font></p>
+$$</p>
 
 </div>
 </div>
@@ -13450,8 +13442,7 @@ $$
 =&amp; \sum_{t=1}^{\tau_{m-1}} \mathbb{E}_{x_{t}, a_{t}}\left[\left(\widehat{f}_{m}\left(x_{t}, a_{t}\right)-f^{*}\left(x_{t}, a_{t}\right)\right)^{2} \mid \Upsilon_{t-1}\right] \\
 \leq&amp; 100 \log \left(\frac{4|\mathcal{F}|\left(\tau_{m-1}\right)^{2} \log _{2}\left(\tau_{m-1}\right)}{\delta}\right) &amp;
 \end{aligned}
-$$
-&lt;/font&gt;</p>
+$$</p>
 
 </div>
 </div>
@@ -13471,7 +13462,6 @@ $$
 <center>
 <font face="Times New Roman" size=4>
 <b>To be continue...</b>
-</font>
 </center>
 </div>
 </div>
