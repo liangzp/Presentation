@@ -13255,8 +13255,7 @@ a.anchor-link {
 <li>$\mathcal{A}$ <strong>finite</strong> set of K actions, i.e. $|\mathcal{A}|=K$ (start point for infinite set of action)</li>
 <li>$\mathcal{X}$ space of contexts</li>
 <li>At each rount t, <strong>nature</strong> samples a context $x_t\in\mathcal{X}$ and a context-dependent reward vector $r_t\in [0,1]^{\mathcal{A}}$</li>
-<li><strong>Learner</strong> observes $x_t$, picks an action $a_t\in \mathcal{A}$ and observes the reward for her action $r_t(a_t)$
-&lt;/font&gt;</li>
+<li><strong>Learner</strong> observes $x_t$, picks an action $a_t\in \mathcal{A}$ and observes the reward for her action $r_t(a_t)$</li>
 </ul>
 
 </div>
@@ -13268,8 +13267,7 @@ a.anchor-link {
 <p><font face="New Times Roman" size=6> Importances</font>
 <font face="New Times Roman" size=5></p>
 <p><li> Applications: user recommendation systems (Agarwal et al., 2016) and mobile health applications (Tewari and Murphy, 2017) </li></p>
-<p><li> In theory: simplest reinforcement learning problem that embeds the full complexity of statistical learning with function approximation </li>
-&lt;/font&gt;</p>
+<p><li> In theory: simplest reinforcement learning problem that embeds the full complexity of statistical learning with function approximation </li>&lt;/font&gt;</p>
 
 </div>
 </div>
@@ -13387,7 +13385,9 @@ Key Challenges and Contributions:</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://raw.githubusercontent.com/liangzp/Presentation/master/Bypassing%20the%20Monster-A%20Faster%20and%20Simpler%20Optimal%20Algorithm%20for%20Contextual%20Bandits%20under%20Realizability/Algorithm.png" height="100"/>
+<p><center>
+<img style="display:block;width:80%;" src="https://raw.githubusercontent.com/liangzp/Presentation/master/Bypassing%20the%20Monster-A%20Faster%20and%20Simpler%20Optimal%20Algorithm%20for%20Contextual%20Bandits%20under%20Realizability/Algorithm.png" />
+</center>
 <font face="Times New Roman" size=4>
 Components:</p>
 <p><li>
@@ -13432,16 +13432,16 @@ O(\sqrt{K T \log (|\mathcal{F}| T / \delta)})
 LEMMA 1 (Lemma 4.2 in Agarwal et al. 2012 ). Fix a function $f \in \mathcal{F}$. Suppose we sample
 $x, r$ from the data distribution $\mathcal{D}_{\mathcal{X}},$ and an action a from an arbitrary distribution such that $r$ and
 $a$ are conditionally independent given $x .$ Define the random variable
-[
-Y=(f(x, a)-r(a))^{2}-\left(f^{<em>}(x, a)-r(a)\right)^{2}
-]
+$$
+Y=(f(x, a)-r(a))^{2}-\left(f^{*}(x, a)-r(a)\right)^{2}
+$$
 Then we have
-[
+$$
 \begin{array}{c}
-\mathbb{E}<em>{x, r, a}[Y]=\mathbb{E}</em>{x, a}\left[\left(f(x, a)-f^{</em>}(x, a)\right)^{2}\right] \
-\operatorname{Var}<em>{x, r, a}[Y] \leq 4 \mathbb{E}</em>{x, r, a}[Y]
+\mathbb{E}_{x, r, a}[Y]=\mathbb{E}_{x, a}\left[\left(f(x, a)-f^{*}(x, a)\right)^{2}\right] \\
+\operatorname{Var}_{x, r, a}[Y] \leq 4 \mathbb{E}_{x, r, a}[Y]
 \end{array}
-]</p>
+$$</p>
 <p>LEMMA 2 (Adapted from Lemma 4.1 in Agarwal et al. 2012 ). For all $m \geq 2,$ with prob-
 ability at least $1-\delta /\left(4\left(\tau_{m-1}\right)^{2}\right),$ we have:
 $$
