@@ -1,0 +1,508 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "<center><font face=\"New Times Roman\" size=10> Integrating Empirical Estimation and\n",
+    "Assortment Personalization for E-Commerce: </font></center>\n",
+    "    \n",
+    "<center><font face=\"New Times Roman\" size=6>A Consider-then-Choose Model Maggie</font></center>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=4> Thumbnail utility\n",
+    "$$\n",
+    "\\tilde{U}_{i j t}=\\tilde{\\alpha}_{i}+\\tilde{x}_{i t} \\tilde{\\beta}+\\tilde{\\rho}_{i t}+\\xi_{i j t}+\\eta_{i j t}=\\tilde{V}_{i t}+\\xi_{i j t}+\\eta_{i j t}\n",
+    "$$\n",
+    "+ ξijt is the difference in consumer j’s idiosyncratic preferences towards the photos, description, and other item information presented on the front page\n",
+    "+ ηijt, on the other hand, is the shock to the utility consumer j receives from consuming item j in period t, reflecting the uncertainty the consumer faces at the stage of the consideration set formation due to the incompleteness of the information available on the front page.\n",
+    "+ ξijt follows a standard normal distribution\n",
+    "+ ηijt follows a Type-I Extreme Value distribution\n",
+    "+ ξijt is observed by consumer j herself at the stage of consideration set formation, but unobservable to researchers\n",
+    "+ ηijt is not observable to either the consumer or researchers. Consumers are assumed to know the distribution of ηijt when forming their consideration set, and the value of ηijt is realized after consumers visit the item page\n",
+    "\n",
+    "</font>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=6> The expected front-page utility\n",
+    "$$\n",
+    "\\tilde{E} U_{j t}(S \\mid \\tilde{V}, \\xi)=\\log \\left(\\sum_{i \\in S} \\exp \\left(\\tilde{V}_{i t}+\\xi_{i j t}\\right)\\right)+\\mu\n",
+    "$$\n",
+    "</font>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "subslide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=6>The expected benefit consumer j derives from the consideration set S at time t\n",
+    "$$\n",
+    "B_{j t}(S \\mid \\tilde{V}, \\xi)=\\tilde{E} U_{j t}(S \\mid \\tilde{V}, \\xi)-|S| \\cdot C_{t}\n",
+    "$$\n",
+    "</font>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "subslide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=4>\n",
+    "$$\n",
+    "S_{j t}^{*}(\\tilde{V}, \\xi)=\\underset{S \\in 2^{I_{t}}}{\\operatorname{argmax}} B_{j t}(S \\mid \\tilde{V}, \\xi)\n",
+    "$$\n",
+    "</font>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=4>The utility for this consumer to purchase item i ∈S∗\n",
+    "$$\n",
+    "U_{i j t}=\\alpha_{i}+x_{i t} \\beta+\\rho_{i t}+\\xi_{i j t}+\\epsilon_{i j t}=V_{i t}+\\xi_{i j t}+\\epsilon_{i j t}\n",
+    "$$\n",
+    "+ In contrast, ξijt = ˜ξijt in Eq. (1) because consumer j’s preference deviation from the mean towards information available on the front page has been realized in the stage of the consideration set formation.\n",
+    "+ Note that this shock is unknown to the consumer in the first stage, but known to her in this second stage.\n",
+    "</font>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=6>The probability that consumer j will purchase item i in period t, conditional on that i is in her consideration set S\n",
+    "$$\n",
+    "\\operatorname{Pr}\\left[y_{i j t}=1 \\mid i \\in S\\right]=\\frac{\\exp \\left(V_{j t}+\\xi_{i j t}\\right)}{1+\\sum_{k \\in S} \\exp \\left(V_{k t}+\\xi_{k j t}\\right)}\n",
+    "$$\n",
+    "</font>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=6>The unconditional probability of consumer j choosing item i from all available items at\n",
+    "time t\n",
+    "$$\n",
+    "\\begin{aligned}\n",
+    "\\operatorname{Pr}\\left[y_{i j t}=1\\right] &=\\sum_{S \\in 2^{I_{t}}} \\operatorname{Pr}\\left[S_{j t}=S\\right] \\cdot \\mathbf{1}[i \\in S] \\cdot \\operatorname{Pr}\\left[y_{i j t}=1 \\mid i \\in S\\right] \\\\\n",
+    "&\\left.=\\int_{\\xi_{j t}} \\operatorname{Pr}\\left[y_{i j t}=1 \\mid i \\in S_{j t}^{*}\\left(\\tilde{V}_{i t}, \\xi_{i j t}\\right)\\right)\\right] \\phi\\left(\\xi_{\\cdot j t}\\right) d \\xi_{\\cdot j t}\n",
+    "\\end{aligned}\n",
+    "$$\n",
+    "</font>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=6>The model predicted view count for item i in period t</font>\n",
+    "\n",
+    "$$\n",
+    "\\hat{U} V_{i t}=M_{t} \\cdot \\int_{\\xi_{i j t}} \\mathbf{1}\\left(i \\in S_{j t}^{*}\\left(\\tilde{V}_{i t}, \\xi_{i j t}\\right)\\right) \\phi\\left(\\xi_{i j t}\\right) d \\xi_{i j t}\n",
+    "$$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "subslide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=6>The predicted sales of item i in period t</font>\n",
+    "$$\n",
+    "\\begin{aligned}\n",
+    "\\hat{s}_{i t} &=M_{t} \\cdot \\operatorname{Pr}\\left[y_{i j t}=1\\right] \\\\\n",
+    "&\\left.=M_{t} \\cdot \\int_{\\xi_{j t}} \\operatorname{Pr}\\left[y_{i j t}=1 \\mid i \\in S_{j t}^{*}\\left(\\tilde{V}_{i t}, \\xi_{i j t}\\right)\\right)\\right] \\phi\\left(\\xi_{\\cdot j t}\\right) d \\xi_{\\cdot j t}\n",
+    "\\end{aligned}\n",
+    "$$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=6>Estimation:\n",
+    "$$\n",
+    "\\begin{aligned}\n",
+    "\\min _{\\theta} &\\sum_{t=1}^{T} \\sum_{i \\in I_{t}}\\left|s_{i t}-\\hat{s}_{i t}\\right|\\\\\n",
+    "\\text { s.t. } &\\sum_{i \\in I_{t}}\\left|U V_{i t}-U \\hat{V}_{i t}\\right| \\leq \\gamma \\cdot U V_{i t}, \\forall t=1, \\cdots, T,\n",
+    "\\end{aligned}\n",
+    "$$\n",
+    "</font>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "subslide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=4>The first step: estimate the set of mean utilities\n",
+    "V˜it and Vit, as well as the viewing cost Ct\n",
+    "\n",
+    "The second step: regress the mean utilities on the observed covariates ˜xit and xit to estimate the item fixed effect and the coefficients of ˜xit as well as xit in their respective functions</font>\n",
+    "\n",
+    "$$\n",
+    "\\begin{array}{c}\n",
+    "\\min _{\\tilde{V}_{i t}, V_{i t}, C_{i t}} \\sum_{i \\in I_{t}}\\left|s_{i t}-\\hat{s}_{i t}\\right| \\\\\n",
+    "\\text { s.t. } \\sum_{i \\in I_{t}}\\left|U V_{i t}-U \\hat{V}_{i t}\\right| \\leq \\gamma \\cdot U V_{i t}\n",
+    "\\end{array}\n",
+    "$$\n",
+    "</font>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "subslide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=4>\n",
+    "<li> Choices are mutually exclusive, i.e., each consumer chooses at most one item from the set. Therefore, the data we apply this model to should contain a set of substitutable items. \n",
+    "<li> Use the total number of unique views of all items in the category to approximate the market size of that category\n",
+    "</font>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=4>\n",
+    "<li> First find a target assortment set that generates the maximum expected revenue.\n",
+    "<li> Adjust the thumbnail utility (by adjusting the display of items in the front page) to induce a consumer to form her optimal consideration set that coincides with the target assortment set\n",
+    "</font>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "subslide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=4>Max-Revenue Assortment Planning:\n",
+    "$$\n",
+    "R_{i}(A \\mid V, \\xi)=\\frac{\\exp \\left(V_{i}+\\xi_{i}\\right)}{1+\\sum_{k \\in A} \\exp \\left(V_{k}+\\xi_{k}\\right)} \\cdot p_{i}\n",
+    "$$\n",
+    "</font>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "subslide"
+    }
+   },
+   "source": [
+    "$$\n",
+    "\\begin{array}{c}\n",
+    "A^{*}(V, \\xi)=\\underset{A \\in Z^{I}}{\\arg \\max } \\sum_{i \\in A} R_{i}(A \\mid V, \\xi) \\\\\n",
+    "\\text { s.t. }|A|<K(C)\n",
+    "\\end{array}\n",
+    "$$\n",
+    "\n",
+    "**Rusmevichientong et al. (2010)**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "$$\n",
+    "\\begin{array}{c}\n",
+    "(\\text { OCSIO-Full }) \\quad P_{o p t}^{2}=\\min _{\\tilde{V}^{\\prime}}\\left\\|\\tilde{V}-\\tilde{V}^{\\prime}\\right\\|^{2} \\\\\n",
+    "\\text { s.t. } B\\left(A^{*}(V, \\xi) \\mid \\tilde{V}^{\\prime}, \\xi\\right)>B\\left(S \\mid \\tilde{V}^{\\prime}, \\xi\\right), \\forall S \\in 2^{I} \\backslash\\left\\{A^{*}\\right\\} \\\\\n",
+    "\\left\\|\\tilde{V}-\\tilde{V}^{\\prime}\\right\\|^{2} \\leq b^{2}\n",
+    "\\end{array}\n",
+    "$$"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "Lemma 1 (Convex Marginal Benefit). Given a consideration set S, the marginal\n",
+    "benefit of adding item i into the set is convex in the item’s utility zi = ˜Vi +ξi. The proof is presented in Appendix C.1"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "Theorem 1 (Optimality of Popular Sets). If the items are ordered such that z1 ≥\n",
+    "z2 ≥ · · · ≥ zN, for all i = 0, ...,N−1, if item i +1 is in the optimal consideration set, item i must also be in the optimal consideration set. The empty set is denoted by i = 0."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "Corollary 1. Without loss of generality, reindex the items such that A∗(V, ξ) =\n",
+    "{1, 2, ..., |A∗(V, ξ)|}. OCSIO-Full is equivalent to the following optimization (OCSIO)\n",
+    "$$\n",
+    "\\begin{array}{c}\n",
+    "(\\mathrm{OCSIO}) \\quad P_{o p t}^{2}=\\min _{\\tilde{V}^{\\prime}}\\left\\|\\tilde{V}-\\tilde{V}^{\\prime}\\right\\|^{2} \\\\\n",
+    "\\text { s.t. } B\\left(A^{*} \\mid \\tilde{V}^{\\prime}, \\xi\\right)>B\\left(S \\mid \\tilde{V}^{\\prime}, \\xi\\right), \\forall S \\in\\{\\varnothing,\\{1\\},\\{1,2\\},\\{1,2,3\\}, \\ldots, I\\} \\backslash\\left\\{A^{*}\\right\\} \\\\\n",
+    "\\tilde{z}_{1} \\geq \\tilde{z}_{2} \\geq \\cdots \\geq \\tilde{z}_{N} \\\\\n",
+    "\\left\\|\\tilde{V}-\\tilde{V}^{\\prime}\\right\\|^{2} \\leq b^{2}\n",
+    "\\end{array}\n",
+    "$$\n",
+    "\n",
+    "+ OCSIO is Not Necessarily Convex\n",
+    "+ OCSIO is not Necessarily Feasible"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "Theorem 2 (Sufficient and Necessary Condition for OCSIO Feasibility).\n",
+    "Suppose b =∞, for any given assortment set A∗ with cardinality |A∗| = n ≤N, if n = 1, OCSIO is always feasible. For n ≥ 2, OCSIO is feasible if and only if C < $K^−1$(n) =$log(\\frac{n}{n-1})$."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "Proposition 2 (OCSIO Heuristic). For a feasible n-item OCSIO (|A∗| = n ≥ 2), suppose the original utility is V˜ = ˜V1, ..., ˜VN, and the consumer’s taste is given by ξ (N is\n",
+    "the number of items available in the category). Given some accuracy tolerance $\\epsilon$ > 0, we construct ˜V? in the following fashion, the computational complexity of OCSIO-H is O(Nlog(N))."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "<center>\n",
+    "<img style=\"display:block;width:80%;\" \n",
+    "src=\"https://raw.githubusercontent.com/liangzp/Presentation/master/Integrating%20Empirical%20Estimation%20and%20Assortment%20Personalization%20for%20E-Commerce%3A%20A%20Consider-then-Choose%20Model%20Maggie/Algo.png\">\n",
+    "</center>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=4>\n",
+    "Experiment:\n",
+    "<li> choose an item category on the platform that consists of six different items (recall that we define an item as a product-merchant combination)\n",
+    "<li> Dataset: daily sales, price, number of (unique) views, and inventory information\n",
+    "<li> Reality: the price of each item sold by each merchant, the past-month sales, and a photo of each item.\n",
+    "<li> one item can be sold at different prices during a day and we use the average price throughout the day as the price that is observed by the consumers on both the front page and the item page\n",
+    "<li> the daily number of unique views varies from a minimum of 116 to a maximum of 63,944, while the daily sales number is in the range between 1 and 807.\n",
+    "</font>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=4>\n",
+    "\n",
+    "Estimation:\n",
+    "<li> Estimate a set of mean utilities ( ˜Vit and Vit) of all available items in the category in each day separately\n",
+    "<li> In this illustration, we do not consider price endogeneity\n",
+    "</font>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "<center>\n",
+    "<img style=\"display:block;width:80%;\"  src=\"https://cdn.mathpix.com/snip/images/9f8T_DxSXjFwOSAnqeGHi2yge98UmhHbWvmmDsojRo0.original.fullsize.png\" />\n",
+    "</center>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=4>\n",
+    "<li> For each day, we simulated 10,000 consumers (each with a different taste vector ξ)\n",
+    "<li> For each one of the 1,820,000 consumers simulated, we first solved for the target assortment set A∗ (to maximize the expected revenue). Then, we used the OCSIO heuristic to solve (PH, ˜V?)， OCSIO-H(˜V, ξ,A∗) and then numerically solved OCSIO with b =PH (using a gradient-based interior point algo- rithm).\n",
+    "</font>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "<center>\n",
+    "<img style=\"display:block;width:80%;\" src=\"https://raw.githubusercontent.com/liangzp/Presentation/master/Integrating%20Empirical%20Estimation%20and%20Assortment%20Personalization%20for%20E-Commerce%3A%20A%20Consider-then-Choose%20Model%20Maggie/Gap.png\">"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=4>\n",
+    "<li> If (hypothetically) 80% of the residual error could be explained and adjusted (by additional covariates in ˜x), then the budget would be approximately 40%×|| ˜V||.\n",
+    "<li> If the platform is able to adjust the utility by a modest 40% (from its original magnitude), then the revenue can be improved by 1.27%.\n",
+    "</font>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "slideshow": {
+     "slide_type": "slide"
+    }
+   },
+   "source": [
+    "<font face=\"New Times Roman\" size=4>\n",
+    "Performance of OCSIO Given Imperfect Taste Information\n",
+    "<li> in each day, we simulated 10,000 consumers with different taste ξ·jt\n",
+    "<li> The max-revenue target assortment set and the OCSIO heuristic are computed based on a noisy prediction of the taste vector\n",
+    "ξˆijt = U(1 − u, 1 + u) · ξijt,\n",
+    "where U(a, b) denotes a uniform random variable between a and b.\n",
+    "\n",
+    "$$\n",
+    "\\begin{array}{c|rrrrrrr}\n",
+    "\\hline \\hline \\multicolumn{1}{c|} {\\text { Noise }} & \\multicolumn{6}{|c} {\\text { Budget } b /\\|\\tilde{V}\\|} \\\\\n",
+    "\\cline { 2 - 8 } \\text { Bandwidth } u & 10 \\% & 15 \\% & 20 \\% & 25 \\% & 30 \\% & 40 \\% & 50 \\% \\\\\n",
+    "\\hline 5 \\% & 4.75 \\% & 7.15 \\% & 9.01 \\% & 10.70 \\% & 11.36 \\% & 10.92 \\% & 10.77 \\% \\\\\n",
+    "10 \\% & 1.74 \\% & 3.23 \\% & 4.04 \\% & 4.03 \\% & 4.04 \\% & 2.64 \\% & -0.38 \\% \\\\\n",
+    "20 \\% & 0.74 \\% & 1.82 \\% & 2.02 \\% & 0.49 \\% & 0.42 \\% & -1.17 \\% & -5.29 \\% \\\\\n",
+    "\\hline \\hline\n",
+    "\\end{array}\n",
+    "$$\n",
+    "</font>"
+   ]
+  }
+ ],
+ "metadata": {
+  "celltoolbar": "Slideshow",
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
